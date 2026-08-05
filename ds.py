@@ -63,3 +63,32 @@ class HTbl:
                 return cur
             cur = cur.nxt
         return None
+class QNd:
+    def __init__(self, v):
+        self.v = v
+        self.nxt = None
+
+class Qu:
+    def __init__(self):
+        self.hd = None
+        self.tl = None
+
+    def enq(self, v):
+        n = QNd(v)
+        if not self.tl:
+            self.hd = self.tl = n
+            return
+        self.tl.nxt = n
+        self.tl = n
+
+    def deq(self):
+        if not self.hd: 
+            return None
+        v = self.hd.v
+        self.hd = self.hd.nxt
+        if not self.hd: 
+            self.tl = None
+        return v
+        
+    def is_emp(self):
+        return self.hd is None
